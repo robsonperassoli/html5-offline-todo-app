@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-ng-app manifest="todo.appcache">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+        <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.css" />
+    </head>
+    <body data-ng-controller="TodoController">
+        <div class="container-fluid">
+            <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th colspan="2">Actions</th>
+                        <th>Done</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in itens">
+                        <td style="width: 50px;">{{item.id}}</td>
+                        <td>{{item.description}}</td>
+                        <td style="width: 20px; text-align: center;">
+                            <a data-ng-click="remove(item)" title="Remover"><img src="img/delete.png" /></a>
+                        </td>
+                        <td style="width: 20px; text-align: center;">
+                            <a data-ng-click="edit(item)" title="Editar"><img src="img/edit.png" /></a>
+                        </td>
+                        <td style="width: 25px; text-align: center;">
+                            <a data-ng-show="item.done" data-ng-click="changeStatus(item)"><img src="img/done.png" /></a>
+                            <a data-ng-hide="item.done" data-ng-click="changeStatus(item)"><img src="img/undone.png" /></a>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            
+            <form class="form-horizontal">
+                <input type="text" data-ng-model="todo.description" class="input-xxlarge"/>
+                <input type="button" value="Save" data-ng-click="save()" class="btn"/>
+            </form>
+        </div>
+        
+        <script type="text/javascript" src="lib/angular.min.js"></script>
+        <script type="text/javascript" src="lib/db.js"></script>        
+        <script type="text/javascript" src="control/todo.js"></script>
+    </body>
+</html>
